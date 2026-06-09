@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's involved in taking part</title>
+<style>
+  /* ---- Colours & sizing (edit these to re-theme) ---- */
+  :root{
+    --ink:#2c2c2a; --ink-2:#5f5e5a; --ink-3:#8a8980;
+    --line:rgba(0,0,0,.12); --line-2:rgba(0,0,0,.24);
+    --paper:#ffffff; --surface:#f4f2ec;
+    --info-bg:#e6f1fb; --info-ink:#0c447c; --accent:#185fa5;
+    --warn-bg:#faeeda; --warn-ink:#854f0b;
+    --ok-bg:#eaf3de;  --ok-ink:#3b6d11;
+    --r:8px; --r-lg:12px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
+       line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:720px;margin:0 auto;padding:24px 20px 32px;}
+  h1{font-size:22px;font-weight:600;margin:0 0 4px;}
+  h2{font-size:16px;font-weight:600;margin:0 0 9px;}
+  .lede{font-size:15px;color:var(--ink-2);margin:0 0 20px;}
+
+  /* ---- Eligibility banner ---- */
+  .gate{background:var(--info-bg);border-radius:var(--r-lg);padding:16px 18px;margin-bottom:22px;}
+  .gate .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--info-ink);margin:0 0 4px;}
+  .gate p.intro{font-size:14.5px;color:var(--info-ink);margin:0 0 10px;}
+  .crit{display:flex;gap:9px;align-items:flex-start;font-size:14.5px;color:var(--info-ink);margin:6px 0;}
+  .crit svg{flex:none;width:19px;height:19px;margin-top:1px;}
+
+  .tap-hint{font-size:13px;color:var(--ink-2);margin:0 0 12px;}
+
+  /* ---- Stepper ---- */
+  .steps{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;}
+  .step{flex:1 1 84px;border:1px solid var(--line);background:var(--surface);
+        border-radius:var(--r);padding:10px 6px;cursor:pointer;text-align:center;
+        transition:border-color .12s,background .12s;font-family:inherit;}
+  .step:hover{border-color:var(--line-2);}
+  .step:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .step.on{border:2px solid var(--accent);background:var(--info-bg);padding:9px 5px;}
+  .step .num{font-size:10px;color:var(--ink-3);}
+  .step .lab{font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.25;margin-top:3px;}
+  .step.on .lab{color:var(--info-ink);}
+
+  /* ---- Detail panel ---- */
+  .detail{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+          padding:18px 20px;min-height:160px;}
+  .meta{display:flex;align-items:center;gap:8px;margin:0 0 7px;}
+  .meta .of{font-size:11px;color:var(--ink-3);}
+  .pill{font-size:11px;font-weight:600;color:var(--ink-2);background:var(--surface);
+        border-radius:999px;padding:2px 10px;}
+  .detail h2{margin:0 0 9px;}
+  .body{font-size:15px;line-height:1.7;margin:0;}
+  .callout{border-radius:var(--r);padding:10px 14px;margin-top:12px;font-size:13.5px;line-height:1.55;}
+  .callout.info{background:var(--info-bg);color:var(--info-ink);}
+  .callout.warn{background:var(--warn-bg);color:var(--warn-ink);}
+  .callout.ok{background:var(--ok-bg);color:var(--ok-ink);}
+  .callout p{margin:0;}
+  .arm{background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r);padding:12px 15px;margin-top:11px;}
+  .arm .an{font-size:15px;font-weight:600;margin:0 0 4px;}
+  .arm .ax{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0;}
+  .arm .aw{font-size:13px;line-height:1.55;color:var(--warn-ink);margin:9px 0 0;display:flex;gap:7px;align-items:flex-start;}
+  .arm .aw svg{flex:none;width:16px;height:16px;margin-top:2px;}
+  .cop{display:flex;gap:9px;align-items:flex-start;background:var(--surface);border-radius:var(--r);
+       padding:10px 14px;margin-top:12px;}
+  .cop svg{flex:none;width:18px;height:18px;margin-top:2px;color:var(--ink-2);}
+  .cop p{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin:0;}
+
+  /* ---- Time summary ---- */
+  .time{margin-top:22px;}
+  .time .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3);margin:0 0 9px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  .card{background:var(--surface);border-radius:var(--r);padding:12px 15px;}
+  .card .cl{font-size:12.5px;color:var(--ink-2);margin:0;}
+  .card .cv{font-size:20px;font-weight:600;margin:3px 0 0;}
+
+  footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);
+         font-size:13px;color:var(--ink-3);}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <h1>What's involved in taking part</h1>
+  <p class="lede">This study looks at supports for families. Here's the whole journey, start to finish, so you know what to expect before you decide.</p>
+
+  <!-- EDIT: eligibility criteria -->
+  <div class="gate">
+    <p class="kicker">First &mdash; is this study right for you?</p>
+    <p class="intro">You'll need <strong>all three</strong> of these to take part:</p>
+    <div class="crit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg><span>Living in rural or regional Australia</span></div>
+    <div class="crit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg><span>Parenting at least one child aged 0&ndash;12</span></div>
+    <div class="crit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><span>Raising that child with someone else (a partner, grandparent, or anyone important in your child's life)</span></div>
+  </div>
+
+  <p class="tap-hint">If that's you, the study runs over <strong>6 months</strong>. Tap each step to see what's involved.</p>
+
+  <div class="steps" id="steps"></div>
+  <div class="detail" id="detail"></div>
+
+  <div class="time">
+    <p class="kicker">Total time, per person</p>
+    <div class="cards">
+      <div class="card"><p class="cl">If Family Life Check In</p><p class="cv">2.5&ndash;3 hrs</p></div>
+      <div class="card"><p class="cl">If Family Foundations</p><p class="cv">10&ndash;11 hrs</p></div>
+    </div>
+  </div>
+
+  <!-- EDIT: add your real contact details below -->
+  <footer>Questions? Contact the research team at [email] or [phone].</footer>
+
+</main>
+
+<script>
+const S=[
+ {lab:"Express interest", time:"~2 min",
+  body:`Press next on this page, give your contact details, and answer a few basic questions. You'll also tell us when works best to talk. There's no commitment at this stage.`},
+ {lab:"Speak to team", time:"~10 min",
+  body:`A team member talks you through the project, asks questions to check your eligibility, and collects details of the co-parent you'd like to take part with.`,
+  info:{h:"If you're not eligible:", x:"the team will talk through other support options with you, so the conversation is still worthwhile."},
+  cop:`The team has this same conversation separately with your co-parent, to check it's a fit for them too.`},
+ {lab:"Consent", time:"~5 min",
+  body:`If you're eligible, we email you a link to read and sign the consent form digitally. Sign only when you're comfortable &mdash; and contact the team any time with questions.`,
+  cop:`Your co-parent completes their own consent form too.`},
+ {lab:"First survey", time:"~20&ndash;30 min",
+  body:`You'll answer questions about your family, mental health, life circumstances and relationships.`,
+  info:{h:"Why we ask so much:", x:"these answers help us understand what's happening for you, and let us compare before and after the support to see what changes. The detail is the point &mdash; it's how the study measures whether the support helps."},
+  gift:`as thanks for completing it, sent by email.`,
+  cop:`Your co-parent completes the same survey.`},
+ {lab:"Randomisation", time:null,
+  body:`Your family is randomly allocated to one of the two supports below. It's done completely by chance &mdash; like flipping a coin &mdash; and a researcher will let you know which one by phone or email.`,
+  warn:{h:"You can't choose your support:", x:"neither you nor the team decides &mdash; it's random. Both supports are genuinely valuable, and whichever you receive makes an essential contribution to the study."},
+  arms:[
+   {n:"Family Life Check In", x:"A 30-minute phone call with a health professional to talk through your life and the supports you might need. One or both of you can take the call."},
+   {n:"Family Foundations", x:"Eight one-hour sessions, usually weekly, delivered online with a health professional. You and your co-parent attend together.",
+    w:"These run within 11 weeks of randomisation. If you don't feel you can commit to that, please tell the team before enrolling."}
+  ]},
+ {lab:"Post survey", time:"~15&ndash;20 min",
+  body:`About 12 weeks after randomisation, we email you a link to a survey with questions similar to the first, plus a short feedback survey about the support you received.`,
+  gift:`as thanks, sent by email.`},
+ {lab:"6-month", time:"~20&ndash;30 min",
+  body:`Around six months in, a final survey with similar questions to the first. You'll also be invited to an optional 30-minute interview about your experience of the support.`,
+  gift:`for the survey &mdash; and another $20 if you take part in the optional interview.`}
+];
+
+const CLOCK=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
+const USERS=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg>`;
+
+const stepsEl=document.getElementById('steps');
+const detEl=document.getElementById('detail');
+
+function render(idx){
+  const s=S[idx];
+  let h='<div class="meta"><span class="of">Step '+(idx+1)+' of '+S.length+'</span>';
+  if(s.time) h+='<span class="pill">'+s.time+'</span>';
+  h+='</div>';
+  h+='<h2>'+s.lab+'</h2>';
+  h+='<p class="body">'+s.body+'</p>';
+  if(s.warn) h+='<div class="callout warn"><p><strong>'+s.warn.h+'</strong> '+s.warn.x+'</p></div>';
+  if(s.info) h+='<div class="callout info"><p><strong>'+s.info.h+'</strong> '+s.info.x+'</p></div>';
+  if(s.arms){
+    s.arms.forEach(a=>{
+      h+='<div class="arm"><p class="an">'+a.n+'</p><p class="ax">'+a.x+'</p>';
+      if(a.w) h+='<p class="aw">'+CLOCK+'<span>'+a.w+'</span></p>';
+      h+='</div>';
+    });
+  }
+  if(s.gift) h+='<div class="callout ok"><p><strong>$20 gift card</strong> '+s.gift+'</p></div>';
+  if(s.cop) h+='<div class="cop">'+USERS+'<p>'+s.cop+'</p></div>';
+  detEl.innerHTML=h;
+}
+
+S.forEach((s,idx)=>{
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='step'+(idx===0?' on':'');
+  b.innerHTML='<div class="num">Step '+(idx+1)+'</div><div class="lab">'+s.lab+'</div>';
+  b.setAttribute('aria-label','Step '+(idx+1)+': '+s.lab);
+  b.onclick=()=>{
+    document.querySelectorAll('.step').forEach(e=>e.classList.remove('on'));
+    b.classList.add('on');
+    render(idx);
+  };
+  stepsEl.appendChild(b);
+});
+render(0);
+</script>
+</body>
+</html>
