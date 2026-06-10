@@ -6,45 +6,72 @@
 <title>What's involved in taking part</title>
 <style>
   :root{
-    --ink:#2c2c2a; --ink-2:#5f5e5a; --ink-3:#8a8980;
-    --line:rgba(0,0,0,.12); --line-2:rgba(0,0,0,.24);
-    --paper:#ffffff; --surface:#f4f2ec;
-    --info-bg:#e6f1fb; --info-ink:#0c447c; --accent:#185fa5;
-    --warn-bg:#faeeda; --warn-ink:#854f0b;
-    --ok-bg:#eaf3de;  --ok-ink:#3b6d11;
-    --r:8px; --r-lg:12px;
+    /* Palette derived from supplied colours */
+    --terra:#ce703c; --terra-d:#a9551f;
+    --navy:#365277;  --navy-d:#2a425f;
+    --wheat:#dbca9c; --cream:#e6dbbd;
+
+    --ink:#2f2a24; --ink-2:#5e564a; --ink-3:#8d8472;
+    --line:rgba(47,42,36,.14); --line-2:rgba(47,42,36,.26);
+    --paper:#fbf9f3; --surface:#efe7d6; --surface-2:#e6dbbd;
+
+    --info-bg:#e7edf4; --info-ink:#2a425f;
+    --warn-bg:#f6e6d8; --warn-ink:#8f4a1f;
+    --ok-bg:#ebedd6;   --ok-ink:#566321;
+
+    --flow:#ce703c;            /* arrows / connectors */
+    --r:10px; --r-lg:14px;
     --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
        line-height:1.6;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:720px;margin:0 auto;padding:22px 18px 28px;}
-  h1{font-size:21px;font-weight:600;margin:0 0 4px;}
-  .lede{font-size:14.5px;color:var(--ink-2);margin:0 0 18px;}
+  .wrap{max-width:680px;margin:0 auto;padding:22px 18px 30px;}
+  h1{font-size:21px;font-weight:700;margin:0 0 16px;letter-spacing:-.2px;}
 
-  .gate{background:var(--info-bg);border-radius:var(--r-lg);padding:15px 17px;margin-bottom:18px;}
-  .gate .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--info-ink);margin:0 0 4px;}
-  .gate p.intro{font-size:14px;color:var(--info-ink);margin:0 0 9px;}
-  .crit{display:flex;gap:9px;align-items:flex-start;font-size:14px;color:var(--info-ink);margin:6px 0;}
-  .crit svg{flex:none;width:18px;height:18px;margin-top:1px;}
+  svg{display:block;}
 
-  .tap-hint{font-size:13px;color:var(--ink-2);margin:0 0 12px;}
+  /* ---- Eligibility gate (navy) ---- */
+  .gate{background:var(--navy);border-radius:var(--r-lg);padding:17px 18px;color:#fff;}
+  .gate .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+                color:var(--wheat);font-weight:700;margin:0 0 6px;}
+  .gate p.intro{font-size:14.5px;margin:0 0 12px;color:#f3eee2;}
+  .crit{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;margin:10px 0;}
+  .crit .ic{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);
+            display:flex;align-items:center;justify-content:center;}
+  .crit .ic svg{width:17px;height:17px;color:var(--wheat);}
+  .crit span{padding-top:4px;}
+  .crit b{font-weight:700;}
 
-  /* Native tap-to-expand step (no JavaScript) */
-  details{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin-bottom:8px;overflow:hidden;}
-  details[open]{background:var(--paper);border-color:var(--line-2);}
-  summary{cursor:pointer;list-style:none;padding:12px 15px;display:flex;align-items:center;
-          gap:10px;font-size:14.5px;font-weight:600;color:var(--ink);}
+  /* ---- intro instruction ---- */
+  .hint{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+        margin:18px 0 4px;font-size:14.5px;color:var(--ink-2);}
+  .hint .dur{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;
+             color:var(--terra-d);background:var(--warn-bg);border-radius:999px;padding:4px 11px;}
+  .hint .dur svg{width:14px;height:14px;}
+
+  /* ---- flow connector (vertical arrow) ---- */
+  .conn{display:flex;flex-direction:column;align-items:center;margin:2px 0;}
+  .conn .ln{width:2px;height:14px;background:var(--flow);}
+  .conn .tip{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+             border-top:7px solid var(--flow);margin-top:-1px;}
+
+  /* ---- step node (tap to expand) ---- */
+  details{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden;}
+  details[open]{background:var(--paper);border-color:var(--line-2);box-shadow:0 1px 0 rgba(0,0,0,.03);}
+  summary{cursor:pointer;list-style:none;padding:12px 14px;display:flex;align-items:center;gap:12px;}
   summary::-webkit-details-marker{display:none;}
-  summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;}
-  .snum{font-size:11px;font-weight:600;color:var(--ink-3);min-width:48px;}
-  .stitle{flex:1;}
-  .pill{font-size:11px;font-weight:600;color:var(--ink-2);background:var(--paper);
-        border:1px solid var(--line);border-radius:999px;padding:2px 9px;white-space:nowrap;}
+  summary:focus-visible{outline:2px solid var(--terra);outline-offset:-2px;border-radius:var(--r);}
+  .badge{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);
+         display:flex;align-items:center;justify-content:center;}
+  .badge svg{width:18px;height:18px;color:#fff;}
+  .stitle{flex:1;font-size:15px;font-weight:700;color:var(--ink);}
+  .pill{font-size:11px;font-weight:700;color:var(--ink-2);background:var(--paper);
+        border:1px solid var(--line-2);border-radius:999px;padding:3px 9px;white-space:nowrap;}
   details[open] .pill{background:var(--surface);}
   .chev{flex:none;width:16px;height:16px;color:var(--ink-3);transition:transform .15s;}
   details[open] .chev{transform:rotate(180deg);}
-  .dbody{padding:0 15px 15px;}
+  .dbody{padding:2px 15px 15px 60px;}
   .body{font-size:14.5px;line-height:1.65;margin:0;}
 
   .callout{border-radius:var(--r);padding:10px 13px;margin-top:11px;font-size:13.5px;line-height:1.5;}
@@ -52,114 +79,223 @@
   .callout.warn{background:var(--warn-bg);color:var(--warn-ink);}
   .callout.ok{background:var(--ok-bg);color:var(--ok-ink);}
   .callout p{margin:0;}
-  .arm{background:var(--paper);border:1px solid var(--line-2);border-radius:var(--r);padding:11px 14px;margin-top:10px;}
-  .arm .an{font-size:14.5px;font-weight:600;margin:0 0 4px;}
-  .arm .ax{font-size:14px;line-height:1.55;color:var(--ink-2);margin:0;}
-  .arm .aw{font-size:13px;line-height:1.5;color:var(--warn-ink);margin:8px 0 0;display:flex;gap:7px;align-items:flex-start;}
-  .arm .aw svg{flex:none;width:15px;height:15px;margin-top:2px;}
-  .cop{display:flex;gap:9px;align-items:flex-start;background:var(--surface);border-radius:var(--r);padding:9px 13px;margin-top:11px;}
+  .gift{display:flex;align-items:center;gap:9px;}
+  .gift svg{flex:none;width:18px;height:18px;}
+
+  .cop{display:flex;gap:10px;align-items:flex-start;background:var(--surface-2);
+       border-radius:var(--r);padding:9px 12px;margin-top:11px;}
   .cop svg{flex:none;width:17px;height:17px;margin-top:2px;color:var(--ink-2);}
   .cop p{font-size:13.5px;line-height:1.5;color:var(--ink-2);margin:0;}
 
-  .time{margin-top:18px;}
-  .time .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3);margin:0 0 8px;}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
-  .card{background:var(--surface);border-radius:var(--r);padding:11px 14px;}
-  .card .cl{font-size:12.5px;color:var(--ink-2);margin:0;}
-  .card .cv{font-size:19px;font-weight:600;margin:3px 0 0;}
+  /* ---- branch (fork into two support paths) ---- */
+  .branch-cap{text-align:center;font-size:13.5px;color:var(--ink-2);margin:12px 0 0;}
+  .branch-cap b{color:var(--terra-d);}
+  .stem{width:2px;height:14px;background:var(--flow);margin:6px auto 0;}
 
-  footer{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);}
+  .branch{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+  .branch::before{content:"";position:absolute;top:-16px;left:25%;right:25%;height:2px;background:var(--flow);}
+  .arm{position:relative;background:var(--paper);border:1px solid var(--line-2);
+       border-radius:var(--r);padding:14px;}
+  .arm::before{content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+               width:2px;height:16px;background:var(--flow);}
+  .arm.terra{border-top:4px solid var(--terra);}
+  .arm.navy{border-top:4px solid var(--navy);}
+  .arm .ah{display:flex;align-items:center;gap:9px;margin:0 0 6px;}
+  .arm .ah .ai{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .arm.terra .ai{background:var(--terra);} .arm.navy .ai{background:var(--navy);}
+  .arm .ah .ai svg{width:16px;height:16px;color:#fff;}
+  .arm .an{font-size:14.5px;font-weight:700;margin:0;}
+  .arm .ax{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin:0;}
+  .arm .aw{font-size:12.5px;line-height:1.45;color:var(--warn-ink);background:var(--warn-bg);
+           border-radius:8px;padding:8px 10px;margin:10px 0 0;display:flex;gap:7px;align-items:flex-start;}
+  .arm .aw svg{flex:none;width:15px;height:15px;margin-top:1px;}
+
+  .merge-cap{text-align:center;font-size:13px;color:var(--ink-3);margin:14px 0 0;}
+
+  /* ---- total time ---- */
+  .time{margin-top:20px;}
+  .time .kicker{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);
+                font-weight:700;margin:0 0 9px;text-align:center;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .tcard{border-radius:var(--r);padding:13px 15px;text-align:center;}
+  .tcard.terra{background:var(--warn-bg);} .tcard.navy{background:var(--info-bg);}
+  .tcard .cl{font-size:12.5px;margin:0;font-weight:600;}
+  .tcard.terra .cl{color:var(--terra-d);} .tcard.navy .cl{color:var(--info-ink);}
+  .tcard .cv{font-size:21px;font-weight:700;margin:3px 0 0;color:var(--ink);}
+
+  footer{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+         font-size:13px;color:var(--ink-3);text-align:center;}
+
+  @media (max-width:520px){
+    .dbody{padding-left:15px;}
+    .branch{grid-template-columns:1fr;gap:22px;}
+    .branch::before{display:none;}
+    .arm::before{top:-16px;height:14px;}
+    .cards{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
 <main class="wrap">
 
   <h1>What's involved in taking part</h1>
-  <p class="lede">Here's the whole journey, start to finish, so you know what to expect before you decide. Tap any step to open it.</p>
 
   <!-- EDIT: eligibility criteria -->
   <div class="gate">
     <p class="kicker">First &mdash; is this study right for you?</p>
     <p class="intro">You'll need <strong>all three</strong> of these to take part:</p>
-    <div class="crit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg><span>Living in rural or regional Australia</span></div>
-    <div class="crit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg><span>Parenting at least one child aged 0&ndash;12</span></div>
-    <div class="crit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><span>Raising that child with someone else (a partner, grandparent, or anyone important in your child's life)</span></div>
+
+    <div class="crit">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg></span>
+      <span>Living in rural or regional Australia</span>
+    </div>
+
+    <div class="crit">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg></span>
+      <span>Parenting at least one child aged 0&ndash;12</span>
+    </div>
+
+    <div class="crit">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg></span>
+      <span>Sharing the parenting with a <b>co-parent</b> &mdash; a partner, ex-partner, grandparent, or other important person &mdash; who will <b>take part in the study alongside you</b>. You both join together as a pair.</span>
+    </div>
   </div>
 
-  <p class="tap-hint">If that's you, the study runs over <strong>6 months</strong>:</p>
+  <!-- EDIT: intro instruction -->
+  <p class="hint">
+    <span class="dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Over about 6 months</span>
+    <span>Click below to see more information about each step of participating.</span>
+  </p>
 
+  <!-- STEP: Express interest -->
   <details open>
-    <summary><span class="snum">Step 1</span><span class="stitle">Express interest</span><span class="pill">~2 min</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <summary>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+      <span class="stitle">Express interest</span>
+      <span class="pill">~2 min</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
     <div class="dbody">
-      <p class="body">Press next on this page, give your contact details, and answer a few basic questions. You'll also tell us when works best to talk. There's no commitment at this stage.</p>
+      <p class="body">Press next on this page, give your contact details, and answer a few quick questions &mdash; including when works best to talk. There's no commitment at this stage.</p>
     </div>
   </details>
 
+  <div class="conn" aria-hidden="true"><span class="ln"></span><span class="tip"></span></div>
+
+  <!-- STEP: Speak to the research team -->
   <details>
-    <summary><span class="snum">Step 2</span><span class="stitle">Speak to the research team</span><span class="pill">~10 min</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <summary>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <span class="stitle">Speak to the research team</span>
+      <span class="pill">~10 min</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
     <div class="dbody">
       <p class="body">A team member talks you through the project, asks questions to check your eligibility, and collects details of the co-parent you'd like to take part with.</p>
       <div class="callout info"><p><strong>If you're not eligible:</strong> the team will talk through other support options with you, so the conversation is still worthwhile.</p></div>
-      <div class="cop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><p>The team has this same conversation separately with your co-parent, to check it's a fit for them too.</p></div>
+      <div class="cop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><p>The team has this same conversation separately with your co-parent, to check it's a fit for them too.</p></div>
     </div>
   </details>
 
+  <div class="conn" aria-hidden="true"><span class="ln"></span><span class="tip"></span></div>
+
+  <!-- STEP: Consent -->
   <details>
-    <summary><span class="snum">Step 3</span><span class="stitle">Read and sign consent</span><span class="pill">~5 min</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <summary>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></span>
+      <span class="stitle">Read and sign consent</span>
+      <span class="pill">~5 min</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
     <div class="dbody">
       <p class="body">If you're eligible, we email you a link to read and sign the consent form digitally. Sign only when you're comfortable &mdash; and contact the team any time with questions.</p>
-      <div class="cop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><p>Your co-parent completes their own consent form too.</p></div>
+      <div class="cop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><p>Your co-parent completes their own consent form too.</p></div>
     </div>
   </details>
 
+  <div class="conn" aria-hidden="true"><span class="ln"></span><span class="tip"></span></div>
+
+  <!-- STEP: First survey -->
   <details>
-    <summary><span class="snum">Step 4</span><span class="stitle">First online survey</span><span class="pill">~20&ndash;30 min</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <summary>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h6"/></svg></span>
+      <span class="stitle">First online survey</span>
+      <span class="pill">~20&ndash;30 min</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
     <div class="dbody">
       <p class="body">You'll answer questions about your family, mental health, life circumstances and relationships.</p>
       <div class="callout info"><p><strong>Why we ask so much:</strong> these answers help us understand what's happening for you, and let us compare before and after the support to see what changes. The detail is the point &mdash; it's how the study measures whether the support helps.</p></div>
-      <div class="callout ok"><p><strong>$20 gift card</strong> as thanks for completing it, sent by email.</p></div>
-      <div class="cop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><p>Your co-parent completes the same survey.</p></div>
+      <div class="callout ok"><p class="gift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8S10 3 7.5 4.5 9 8 12 8Zm0 0s2-5 4.5-3.5S15 8 12 8Z"/></svg><span><strong>$20 gift card</strong> as thanks for completing it, sent by email.</span></p></div>
+      <div class="cop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.6"/><path d="M21 20c0-2-1.3-3.6-3.2-4.3"/></svg><p>Your co-parent completes the same survey.</p></div>
     </div>
   </details>
 
+  <div class="conn" aria-hidden="true"><span class="ln"></span><span class="tip"></span></div>
+
+  <!-- STEP: Randomisation -->
   <details>
-    <summary><span class="snum">Step 5</span><span class="stitle">Randomisation</span><span class="pill">by chance</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <summary>
+      <span class="badge" style="background:var(--terra)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg></span>
+      <span class="stitle">Randomisation</span>
+      <span class="pill">by chance</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
     <div class="dbody">
       <p class="body">Your family is randomly allocated to one of the two supports below. It's done completely by chance &mdash; like flipping a coin &mdash; and a researcher will let you know which one by phone or email.</p>
       <div class="callout warn"><p><strong>You can't choose your support:</strong> neither you nor the team decides &mdash; it's random. Both supports are genuinely valuable, and whichever you receive makes an essential contribution to the study.</p></div>
-      <div class="arm">
+    </div>
+  </details>
+
+  <!-- BRANCH into two support paths -->
+  <p class="branch-cap">Allocated by chance to <b>one</b> of these two paths:</p>
+  <span class="stem" aria-hidden="true"></span>
+
+  <div class="branch">
+    <div class="arm terra">
+      <div class="ah">
+        <span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg></span>
         <p class="an">Family Life Check In</p>
-        <p class="ax">A 30-minute phone call with a health professional to talk through your life and the supports you might need. One or both of you can take the call.</p>
       </div>
-      <div class="arm">
+      <p class="ax">A 30-minute phone call with a health professional to talk through your life and the supports you might need. One or both of you can take the call.</p>
+    </div>
+
+    <div class="arm navy">
+      <div class="ah">
+        <span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
         <p class="an">Family Foundations</p>
-        <p class="ax">Eight one-hour sessions, usually weekly, delivered online with a health professional. You and your co-parent attend together.</p>
-        <p class="aw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>These run within 11 weeks of randomisation. If you don't feel you can commit to that, please tell the team before enrolling.</span></p>
       </div>
+      <p class="ax">Eight one-hour sessions, usually weekly, delivered online with a health professional. You and your co-parent attend together.</p>
+      <p class="aw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>These run within 11 weeks of randomisation. If you can't commit to that, please tell the team before enrolling.</span></p>
     </div>
-  </details>
+  </div>
 
+  <p class="merge-cap">Both paths then continue to the follow-up surveys</p>
+
+  <div class="conn" aria-hidden="true"><span class="ln"></span><span class="tip"></span></div>
+
+  <!-- STEP: Follow-up surveys (merged) -->
   <details>
-    <summary><span class="snum">Step 6</span><span class="stitle">Post-support survey</span><span class="pill">~15&ndash;20 min</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <summary>
+      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 16l2 2 4-4"/></svg></span>
+      <span class="stitle">Follow-up surveys</span>
+      <span class="pill">~15&ndash;80 min</span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
     <div class="dbody">
-      <p class="body">About 12 weeks after randomisation, we email you a link to a survey with questions similar to the first, plus a short feedback survey about the support you received.</p>
-      <div class="callout ok"><p><strong>$20 gift card</strong> as thanks, sent by email.</p></div>
+      <p class="body">There are two more survey points after your support:</p>
+      <div class="callout info"><p><strong>About 12 weeks after randomisation:</strong> a survey with questions similar to the first, plus a short feedback survey about the support you received <em>(~15&ndash;20 min)</em>.</p></div>
+      <div class="callout info"><p><strong>Around six months in:</strong> a final survey with similar questions <em>(~20&ndash;30 min)</em>. You'll also be invited to an optional 30-minute interview about your experience.</p></div>
+      <div class="callout ok"><p class="gift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8S10 3 7.5 4.5 9 8 12 8Zm0 0s2-5 4.5-3.5S15 8 12 8Z"/></svg><span><strong>$20 gift card for each survey</strong> &mdash; plus another <strong>$20</strong> if you take part in the optional interview.</span></p></div>
     </div>
   </details>
 
-  <details>
-    <summary><span class="snum">Step 7</span><span class="stitle">6-month survey + optional interview</span><span class="pill">~20&ndash;30 min</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
-    <div class="dbody">
-      <p class="body">Around six months in, a final survey with similar questions to the first. You'll also be invited to an optional 30-minute interview about your experience of the support.</p>
-      <div class="callout ok"><p><strong>$20 gift card</strong> for the survey &mdash; and another $20 if you take part in the optional interview.</p></div>
-    </div>
-  </details>
-
+  <!-- TOTAL TIME -->
   <div class="time">
     <p class="kicker">Total time, per person</p>
     <div class="cards">
-      <div class="card"><p class="cl">If Family Life Check In</p><p class="cv">2.5&ndash;3 hrs</p></div>
-      <div class="card"><p class="cl">If Family Foundations</p><p class="cv">10&ndash;11 hrs</p></div>
+      <div class="tcard terra"><p class="cl">If Family Life Check In</p><p class="cv">2.5&ndash;3 hrs</p></div>
+      <div class="tcard navy"><p class="cl">If Family Foundations</p><p class="cv">10&ndash;11 hrs</p></div>
     </div>
   </div>
 
